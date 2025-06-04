@@ -1,8 +1,13 @@
 import React from "react";
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useAuth } from "../AuthContext";
+
 
 const CuentaScreen = () => {
-    const handleOptionPress = (option) => {
+
+    const { isLoggedIn, logout } = useAuth();
+
+    const handleOptionPress = (option: string) => {
         Alert.alert('seleccionaste', option);
     };
 
@@ -18,25 +23,29 @@ const CuentaScreen = () => {
                 <Text style={styles.optionText}>Iniciar sesion</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={ styles.option } onPress={() => handleOptionPress('Mi perfil')}>
-                <Text style={styles.optionText}>Mi perfil</Text>
-            </TouchableOpacity>
-
             <TouchableOpacity style={styles.option} onPress={() => handleOptionPress('Settings')}>
                 <Text style={styles.optionText}>Settings</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.option} onPress={() => handleOptionPress('Carrito')}>
-                <Text style={styles.optionText}>Mi carrito</Text>
-            </TouchableOpacity>
+            { isLoggedIn && (     
+                <>
+                    <TouchableOpacity style={ styles.option } onPress={() => handleOptionPress('Mi perfil')}>
+                        <Text style={styles.optionText}>Mi perfil</Text>
+                    </TouchableOpacity>
 
-            <TouchableOpacity style={styles.option} onPress={() => handleOptionPress('Almacenamiento')}>
-                <Text style={styles.optionText}>Almacenamiento</Text>
-            </TouchableOpacity>
+                    <TouchableOpacity style={styles.option} onPress={() => handleOptionPress('Carrito')}>
+                        <Text style={styles.optionText}>Mi carrito</Text>
+                    </TouchableOpacity>
 
-            <TouchableOpacity style={styles.option} onPress={() => handleOptionPress('Cerrar sesion')}>
-                <Text style={[styles.optionText, { color: 'red'}]}>Cerrar sesion</Text>
-            </TouchableOpacity>
+                    <TouchableOpacity style={styles.option} onPress={() => handleOptionPress('Almacenamiento')}>
+                        <Text style={styles.optionText}>Almacenamiento</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.option} onPress={() => handleOptionPress('Cerrar sesion')}>
+                        <Text style={[styles.optionText, { color: 'red'}]}>Cerrar sesion</Text>
+                    </TouchableOpacity>
+                </>
+            )}
         </View>
     );
 };
