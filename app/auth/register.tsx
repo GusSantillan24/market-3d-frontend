@@ -1,15 +1,17 @@
+import { router } from "expo-router";
 import React, { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
-import { useAuth } from "../AuthContext";
+import { useAuth } from "./AuthContext";
 
 const RegisterScreen = () => {
-    const { login } = useAuth;
+    const { login } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
 
     const handleRegister = () => {
         login(); //login automatico tras registro
+        router.replace('/(tabs)/count');
     };
 
     return (

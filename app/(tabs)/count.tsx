@@ -1,11 +1,14 @@
+import { useProtectedNavigation } from '@/hooks/useProtectedNavigation';
+import { router } from 'expo-router';
 import React from "react";
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useAuth } from "../AuthContext";
+import { useAuth } from "../auth/AuthContext";
 
 
 const CuentaScreen = () => {
 
     const { isLoggedIn, logout } = useAuth();
+    const { navigateOrAlert } = useProtectedNavigation();
 
     const handleOptionPress = (option: string) => {
         Alert.alert('seleccionaste', option);
@@ -15,34 +18,36 @@ const CuentaScreen = () => {
         <View style={styles.container}> 
             <Text style={styles.title}>Mi cuenta</Text>
 
-            <TouchableOpacity style={ styles.option } onPress={() => handleOptionPress('Registrarse')}>
-                <Text style={styles.optionText}>Registrarse</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={ styles.option } onPress={() => handleOptionPress('Iniciar sesion')}>
-                <Text style={styles.optionText}>Iniciar sesion</Text>
-            </TouchableOpacity>
-
             <TouchableOpacity style={styles.option} onPress={() => handleOptionPress('Settings')}>
                 <Text style={styles.optionText}>Settings</Text>
             </TouchableOpacity>
 
-            { isLoggedIn && (     
+             <TouchableOpacity style={ styles.option } onPress={() => navigateOrAlert('/app/profile/my_profile.tsx')}>
+                <Text style={styles.optionText}>Mi perfil</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.option} onPress={() => navigateOrAlert('')}>
+                <Text style={styles.optionText}>Mi carrito</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.option} onPress={() => navigateOrAlert('')}>
+                <Text style={styles.optionText}>Almacenamiento</Text>
+            </TouchableOpacity>
+
+            { isLoggedIn ? (     
                 <>
-                    <TouchableOpacity style={ styles.option } onPress={() => handleOptionPress('Mi perfil')}>
-                        <Text style={styles.optionText}>Mi perfil</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.option} onPress={() => handleOptionPress('Carrito')}>
-                        <Text style={styles.optionText}>Mi carrito</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.option} onPress={() => handleOptionPress('Almacenamiento')}>
-                        <Text style={styles.optionText}>Almacenamiento</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.option} onPress={() => handleOptionPress('Cerrar sesion')}>
+                    <TouchableOpacity style={styles.option} onPress={logout}>
                         <Text style={[styles.optionText, { color: 'red'}]}>Cerrar sesion</Text>
+                    </TouchableOpacity>
+                </>
+            ) : (
+                <>
+                    <TouchableOpacity style={ styles.option } onPress={() => router.push('/auth/register')}>
+                        <Text style={styles.optionText}>Registrarse</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={ styles.option } onPress={() => router.push('/auth/login')}>
+                        <Text style={styles.optionText}>Iniciar sesion</Text>
                     </TouchableOpacity>
                 </>
             )}

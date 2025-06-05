@@ -1,18 +1,20 @@
+import { router } from "expo-router";
 import React, { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
-import { useAuth } from "../AuthContext";
+import { useAuth } from "./AuthContext";
 
 const LoginScreen = () => {
-    const { login } = useAuth;
+    const { login } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleLogin = () => {
         login(); //activa el contexto de logueado
+        router.replace('/(tabs)/count'); //redirije a pestaña cuenta
     };
     
     return (
-        <View style={style.container}>
+        <View style={styles.container}>
             <Text style={styles.title}>Iniciar sesion</Text>
             <TextInput
                 style={styles.input}
