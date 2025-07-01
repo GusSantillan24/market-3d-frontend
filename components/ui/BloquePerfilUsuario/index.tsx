@@ -3,13 +3,7 @@ import Colores from '@/constants/Colores';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import React from 'react';
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 
 const UserProfileBlock = () => {
   return (

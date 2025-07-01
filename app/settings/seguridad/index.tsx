@@ -2,15 +2,7 @@
 import Colores from '@/constants/Colores';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import {
-  Platform,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Platform, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const SeguridadScreen = () => {
@@ -74,12 +66,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 1,
     paddingHorizontal: 16,
-    // Sombra para iOS
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.15,
     shadowRadius: 6,
-    // Sombra para Android
     elevation: 5,
   },
   option: {

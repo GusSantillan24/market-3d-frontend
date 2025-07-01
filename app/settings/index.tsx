@@ -2,15 +2,7 @@
 import Colores from '@/constants/Colores';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import {
-  Modal,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Modal, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 
 const SettingsScreen = () => {
   const router = useRouter();
@@ -114,12 +106,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 1,
     paddingHorizontal: 16,
-    // Sombra iOS
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.15,
     shadowRadius: 6,
-    // Sombra Android
     elevation: 5,
   },
   option: {

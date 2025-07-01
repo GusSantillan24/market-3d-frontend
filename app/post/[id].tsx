@@ -21,7 +21,7 @@ const PostDetails = () => {
   if (!post) {
     return (
       <View style={styles.centered}>
-        <Text style={styles.notFoundText}>🚫 Publicación no encontrada</Text>
+        <Text style={styles.notFoundText}>Publicación no encontrada</Text>
       </View>
     );
   }

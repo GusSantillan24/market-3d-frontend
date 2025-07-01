@@ -2,19 +2,12 @@
 import Colores from '@/constants/Colores';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 
 const GeneroScreen = () => {
   const router = useRouter();
 
   const handleSelect = (genero: string) => {
-    // Guardar género en backend o store
     console.log('Género seleccionado:', genero);
     router.back();
   };

@@ -4,15 +4,7 @@ import { mockModels } from '@/constants/mockModels';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import {
-  Dimensions,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Dimensions, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const { width, height } = Dimensions.get('window');
@@ -92,11 +84,10 @@ export default function HomeScreen() {
             <TouchableOpacity key={item.label} style={styles.iconButton}>
               <MaterialCommunityIcons
                 name={item.icon}
-                size={26} // ícono un poco más pequeño para que no se salga
+                size={26}
                 color={item.color}
                 style={{ marginBottom: 6 }}
               />
-              {/* Label en máximo 2 líneas, centrado */}
               <Text
                 style={[styles.iconLabel, { color: item.color }]}
                 numberOfLines={2}
@@ -210,7 +201,7 @@ const styles = StyleSheet.create({
   },
   tabText: {
     color: '#aaa',
-    fontSize: 13, // un poco más pequeño que antes
+    fontSize: 13,
     fontWeight: '600',
   },
   tabTextActive: {

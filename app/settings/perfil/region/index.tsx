@@ -2,13 +2,7 @@
 import Colores from '@/constants/Colores';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import {
-  FlatList,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity
-} from 'react-native';
+import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 const countries = [
   'Argentina',
@@ -29,7 +23,6 @@ const RegionScreen = () => {
     if (country === 'Argentina') {
       router.replace('/settings/perfil/region/provincias');
     } else {
-      // TODO: guardar país en contexto/estado si querés
       router.back();
     }
   };
@@ -73,12 +66,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 16,
     paddingHorizontal: 20,
-    // sombra para iOS
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    // sombra para Android
     elevation: 3,
   },
   optionText: {

@@ -1,16 +1,8 @@
-import { Feather } from '@expo/vector-icons'; // Íconos modernos
+import { Feather } from '@expo/vector-icons';
 import * as FileSystem from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
 import React, { useRef } from 'react';
-import {
-  Image,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 
 const QRScreen = () => {
@@ -89,7 +81,7 @@ export default QRScreen;
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#f4f4f4', // tono claro, suave
+    backgroundColor: '#f4f4f4',
   },
   content: {
     alignItems: 'center',

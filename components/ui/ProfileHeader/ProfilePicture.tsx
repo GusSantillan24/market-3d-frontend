@@ -1,4 +1,4 @@
-import Colores from '@/constants/Colores'; // asegúrate de tener tu sistema de colores
+import Colores from '@/constants/Colores';
 import React from "react";
 import { Image, StyleSheet, View } from 'react-native';
 

@@ -1,13 +1,7 @@
 import Colores from '@/constants/Colores';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import {
-  FlatList,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity
-} from 'react-native';
+import { FlatList, Platform, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const provincias = [
@@ -79,12 +73,10 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 20,
     marginBottom: 12,
-    // Sombra iOS
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    // Sombra Android
     elevation: 3,
   },
   optionText: {

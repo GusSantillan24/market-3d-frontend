@@ -1,15 +1,7 @@
 import Colores from '@/constants/Colores';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import {
-  Image,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 
 const accounts = [
   {

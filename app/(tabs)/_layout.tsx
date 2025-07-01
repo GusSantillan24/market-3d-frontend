@@ -44,8 +44,8 @@ export default function TabLayout() {
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
         tabBarStyle: {
-          height: 50 + insets.bottom, // 👈 altura base + área segura
-          paddingBottom: insets.bottom, // bottom dinámico
+          height: 50 + insets.bottom, //altura base + área segura
+          paddingBottom: insets.bottom, //bottom dinámico
           paddingTop: 6,
           backgroundColor: '#121212',
           borderTopColor: '#2a2a2a',

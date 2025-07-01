@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#121212',
   },
   contentContainer: {
-    paddingHorizontal: 4, // separación mínima a los costados (milímetros)
+    paddingHorizontal: 4, // separación mínima a los costados 
     paddingRight: 4,
     paddingTop: 1,
     paddingBottom: 20, // pequeño margen inferior para que no se pegue

@@ -1,13 +1,6 @@
 import { router } from 'expo-router';
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 
 import UserProfileBlock from '@/components/ui/BloquePerfilUsuario';
 import UserFeatureBlock from '@/components/ui/BloquePerfilUsuario/UserFeaturesBlock';
@@ -90,17 +83,14 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 1,
     paddingHorizontal: 16,
-    // Sombra para iOS
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.15,
     shadowRadius: 6,
-    // Sombra para Android
     elevation: 5,
   },
   option: {
     paddingVertical: 16,
-    // sin borde inferior para no separar con línea
   },
   optionText: {
     fontSize: 16,

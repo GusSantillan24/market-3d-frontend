@@ -1,14 +1,6 @@
-import { useAuth } from '@/app/auth/AuthContext'; // o la ruta que uses
+import { useAuth } from '@/app/auth/AuthContext';
 import React, { useState } from 'react';
-import {
-    Modal,
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
+import { Modal, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 
 const PerfilScreen = () => {
   const { logout } = useAuth();
@@ -16,7 +8,7 @@ const PerfilScreen = () => {
 
   const handleLogoutConfirm = () => {
     setShowModal(false);
-    logout(); // Ejecuta tu lógica de logout
+    logout(); 
   };
 
   return (

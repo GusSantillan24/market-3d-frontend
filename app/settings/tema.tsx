@@ -1,21 +1,13 @@
 import Colores from '@/constants/Colores';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 
 const TemaScreen = () => {
   const [tema, setTema] = useState<'claro' | 'oscuro'>('oscuro'); // valor por defecto
 
   const seleccionarTema = (nuevoTema: 'claro' | 'oscuro') => {
     setTema(nuevoTema);
-    // Aquí podrías persistirlo en AsyncStorage o context
   };
 
   const renderOpcion = (label: string, value: 'claro' | 'oscuro') => (
@@ -64,7 +56,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
     gap: 12,
-    // sombra
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.15,

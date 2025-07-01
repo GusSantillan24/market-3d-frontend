@@ -30,7 +30,7 @@ const Models = () => {
               id={item.id.toString()}
               image={item.image}
               title={item.title}
-              owner={item.owner}           // PASÁ owner aquí
+              owner={item.owner}           
               downloads={item.downloads}
               likes={item.likes}
               cardHeight={randomHeight}

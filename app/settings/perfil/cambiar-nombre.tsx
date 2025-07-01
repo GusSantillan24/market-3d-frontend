@@ -1,14 +1,6 @@
 import Colores from '@/constants/Colores';
 import React, { useState } from 'react';
-import {
-  Alert,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity
-} from 'react-native';
+import { Alert, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
 
 const CambiarNombreScreen = () => {
   const [nombre, setNombre] = useState('');
@@ -18,7 +10,6 @@ const CambiarNombreScreen = () => {
       Alert.alert('Error', 'El nombre no puede estar vacío.');
       return;
     }
-    // Aquí puede ir la lógica para guardar el nombre (API, store, etc)
     Alert.alert('Nombre cambiado', `Nombre cambiado a ${nombre}`);
   };
 

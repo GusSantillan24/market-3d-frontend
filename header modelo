@@ -25,7 +25,7 @@ export default function ModelosLayout() {
       <Stack.Screen
         name="index"
         options={{
-          // Botón atrás explícito
+          // Botón atras 
           headerLeft: () => (
             <TouchableOpacity
               onPress={() => router.back()}

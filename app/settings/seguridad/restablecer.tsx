@@ -3,14 +3,7 @@ import Colores from '@/constants/Colores';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 
 const RestablecerCuentaScreen = () => {
   const router = useRouter();

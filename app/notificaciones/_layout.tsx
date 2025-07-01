@@ -6,7 +6,7 @@ export default function NotificationsStackLayout() {
       <Stack.Screen
         name="index"
         options={{
-          headerShown: false, // Tu layout personalizado se encarga del header
+          headerShown: false, 
         }}
       />
       <Stack.Screen

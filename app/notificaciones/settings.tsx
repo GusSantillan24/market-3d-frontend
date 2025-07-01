@@ -2,14 +2,7 @@
 import * as Notifications from 'expo-notifications';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import {
-  Alert,
-  StyleSheet,
-  Switch,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Alert, StyleSheet, Switch, Text, TouchableOpacity, View, } from 'react-native';
 
 const NotificationSettings = () => {
   const router = useRouter();

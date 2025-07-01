@@ -2,12 +2,7 @@ import NotificationsLayout from '@/components/layouts/notificationsLayout';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const quickActions = [
   { label: 'Likes', icon: 'heart-outline', route: '/notifications/likes' },
@@ -28,7 +23,6 @@ const NotificationsScreen = () => {
 
   return (
     <NotificationsLayout onSettingsPress={() => router.push('/notificationes/settings')}>
-      {/* Acciones rápidas */}
       <View style={styles.actionsRow}>
         {quickActions.map(action => (
           <TouchableOpacity

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
 
-import Colores from '@/constants/Colores'; // asegúrate de tener esta constante
+import Colores from '@/constants/Colores';
 import Favs from './favs';
 import Feed from './feed';
 import Models from './models';
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colores.background,
     borderBottomWidth: 1,
     borderColor: Colores.backgroundAccent,
-    elevation: 0, // sin sombra
+    elevation: 0, 
   },
   indicator: {
     backgroundColor: Colores.textPrimary,

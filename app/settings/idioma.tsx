@@ -1,14 +1,7 @@
 import Colores from '@/constants/Colores';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 
 const idiomasDisponibles = [
   { codigo: 'es', nombre: 'Español' },
@@ -24,7 +17,6 @@ const IdiomaScreen = () => {
 
   const seleccionarIdioma = (codigo: string) => {
     setIdiomaSeleccionado(codigo);
-    // Guardar selección en estado global o almacenamiento local
   };
 
   return (
@@ -75,7 +67,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
     gap: 12,
-    // sombras iOS/Android
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.15,

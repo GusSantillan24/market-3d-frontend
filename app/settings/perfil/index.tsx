@@ -4,16 +4,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ClipboardModule from 'expo-clipboard';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import {
-  Alert,
-  Platform,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native';
+import { Alert, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const generateRandomId = () => Math.random().toString(36).substring(2, 10);
 
@@ -131,12 +122,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 1,
     paddingHorizontal: 16,
-    // Sombra iOS
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.15,
     shadowRadius: 6,
-    // Sombra Android
     elevation: 5,
   },
   option: {

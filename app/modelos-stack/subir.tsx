@@ -2,15 +2,7 @@ import { Feather } from '@expo/vector-icons';
 import * as DocumentPicker from 'expo-document-picker';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import {
-    Alert,
-    FlatList,
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
+import { Alert, FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function SubirModelo() {
@@ -32,7 +24,7 @@ export default function SubirModelo() {
         return;
     }
 
-    // Opcional: podés guardar los archivos en estado global, contexto o enviar vía params
+    
     console.log('Archivos seleccionados:', archivos);
 
     router.push('/modelos-stack/editar');

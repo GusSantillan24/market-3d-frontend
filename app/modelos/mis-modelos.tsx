@@ -44,7 +44,6 @@ export default function MisModelos() {
         }}
       />
 
-      {/* FAB superpuesto */}
       <TouchableOpacity
         style={[styles.fab, { bottom: insets.bottom + 20 }]}
         onPress={() => router.push('/modelos-stack/subir')}
