@@ -1,110 +1,149 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import {
+  Keyboard,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
+const SearchScreen = () => {
+  const insets = useSafeAreaInsets();
 
-export default function TabTwoScreen() {
+  const [query, setQuery] = useState('');
+  const [history, setHistory] = useState(['Impresora', 'GusCrá', 'Modelos', 'Filamento PLA']);
+  const trends = ['Warhammer', 'Fidget', 'Star Wars', 'Soporte Celular', 'GusCrásaurio', 'Lámparas LED'];
+
+  const handleSearch = (text: string) => {
+    if (!text.trim()) return;
+    setHistory((prev) => [text, ...prev.filter((item) => item !== text)].slice(0, 10));
+    setQuery('');
+    Keyboard.dismiss();
+    console.log('Buscando:', text);
+  };
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
+    <View style={[styles.container, { paddingTop: insets.top + 10 }]}>
+      {/* Input de búsqueda */}
+      <View style={styles.searchBar}>
+        <MaterialCommunityIcons name="magnify" size={22} color="#999" />
+        <TextInput
+          style={styles.input}
+          placeholder="Buscar modelos, diseñadores..."
+          placeholderTextColor="#666"
+          value={query}
+          onChangeText={setQuery}
+          onSubmitEditing={() => handleSearch(query)}
+          returnKeyType="search"
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image source={require('@/assets/images/react-logo.png')} style={{ alignSelf: 'center' }} />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{' '}
-          <ThemedText style={{ fontFamily: 'SpaceMono' }}>
-            custom fonts such as this one.
-          </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user&apos;s current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful <ThemedText type="defaultSemiBold">react-native-reanimated</ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+        {query.length > 0 && (
+          <TouchableOpacity onPress={() => setQuery('')}>
+            <MaterialCommunityIcons name="close-circle" size={20} color="#666" />
+          </TouchableOpacity>
+        )}
+      </View>
+
+      {/* Historial de búsqueda */}
+      {history.length > 0 && (
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Historial</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.historyScroll}>
+            {history.map((item, idx) => (
+              <TouchableOpacity
+                key={idx}
+                style={styles.historyItem}
+                onPress={() => handleSearch(item)}
+              >
+                <Text style={styles.historyText}>{item}</Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
+      )}
+
+      {/* Tendencias del momento */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Tendencias del momento</Text>
+        {trends.map((trend, idx) => (
+          <TouchableOpacity
+            key={idx}
+            style={styles.trendItem}
+            onPress={() => handleSearch(trend)}
+          >
+            <MaterialCommunityIcons name="fire" size={18} color="#ff6e40" />
+            <Text style={styles.trendText}>{trend}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    </View>
   );
-}
+};
+
+export default SearchScreen;
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  container: {
+    flex: 1,
+    backgroundColor: '#121212',
+    paddingHorizontal: 16,
   },
-  titleContainer: {
+  searchBar: {
     flexDirection: 'row',
-    gap: 8,
+    alignItems: 'center',
+    backgroundColor: '#1f1f1f',
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: Platform.OS === 'ios' ? 10 : 8,
+    marginBottom: 16,
+  },
+  input: {
+    flex: 1,
+    marginLeft: 8,
+    color: '#fff',
+    fontSize: 16,
+  },
+  section: {
+    marginBottom: 24,
+  },
+  sectionTitle: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '700',
+    marginBottom: 10,
+  },
+  historyScroll: {
+    flexDirection: 'row',
+    gap: 10,
+  },
+  historyItem: {
+    backgroundColor: '#2a2a2a',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 20,
+  },
+  historyText: {
+    color: '#eee',
+    fontSize: 13,
+  },
+  trendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    backgroundColor: '#1e1e1e',
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  trendText: {
+    color: '#fff',
+    marginLeft: 8,
+    fontSize: 14,
+    fontWeight: '500',
   },
 });
+

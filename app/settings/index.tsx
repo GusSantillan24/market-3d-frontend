@@ -1,29 +1,50 @@
-// app/settings/index.tsx
+import { useAuth } from '@/app/auth/AuthContext';
 import Colores from '@/constants/Colores';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { Modal, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
+import {
+  Modal,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 const SettingsScreen = () => {
   const router = useRouter();
+  const { isLoggedIn, logout } = useAuth();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
-  const handlePress = (path: string) => {
-    router.push(path);
+  const protectedPress = (path: string) => {
+    if (!isLoggedIn) {
+      setShowLoginModal(true);
+    } else {
+      router.push(path);
+    }
   };
 
   const handleLogout = () => {
     setShowLogoutModal(false);
-    console.log('Sesión cerrada');
+    logout();
+    router.replace('/(tabs)/count');
   };
 
-  const renderSection = (items: { label: string; path?: string; action?: () => void }[]) => (
+  const renderSection = (items: { label: string; path?: string; action?: () => void; allowGuest?: boolean }[]) => (
     <View style={styles.block}>
-      {items.map(({ label, path, action }) => (
+      {items.map(({ label, path, action, allowGuest }) => (
         <TouchableOpacity
           key={label}
           style={styles.option}
-          onPress={() => (path ? handlePress(path) : action?.())}
+          onPress={() => {
+            if (path) {
+              allowGuest ? router.push(path) : protectedPress(path);
+            } else {
+              action?.();
+            }
+          }}
           activeOpacity={0.7}
         >
           <Text style={styles.optionText}>{label}</Text>
@@ -45,8 +66,8 @@ const SettingsScreen = () => {
         ])}
 
         {renderSection([
-          { label: 'Idioma', path: '/settings/idioma' },
-          { label: 'Tema', path: '/settings/tema' },
+          { label: 'Idioma', path: '/settings/idioma', allowGuest: true },
+          { label: 'Tema', path: '/settings/tema', allowGuest: true },
         ])}
 
         {renderSection([
@@ -59,12 +80,13 @@ const SettingsScreen = () => {
           { label: 'Enviar comentario', path: '/settings/enviar-comentario' },
         ])}
 
-        {renderSection([
-          { label: 'Cerrar sesión', action: () => setShowLogoutModal(true) },
-        ])}
+        {isLoggedIn &&
+          renderSection([
+            { label: 'Cerrar sesión', action: () => setShowLogoutModal(true) },
+          ])}
       </ScrollView>
 
-      {/* Modal de logout */}
+      {/* MODAL: Logout */}
       <Modal
         visible={showLogoutModal}
         transparent
@@ -75,13 +97,45 @@ const SettingsScreen = () => {
           <View style={styles.modalContainer}>
             <Text style={styles.modalTitle}>¿Está seguro de cerrar sesión?</Text>
             <View style={styles.modalButtons}>
-              <TouchableOpacity style={styles.cancelButton} onPress={() => setShowLogoutModal(false)}>
+              <TouchableOpacity
+                style={styles.cancelButton}
+                onPress={() => setShowLogoutModal(false)}
+              >
                 <Text style={styles.cancelText}>Cancelar</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.confirmButton} onPress={handleLogout}>
                 <Text style={styles.confirmText}>Confirmar</Text>
               </TouchableOpacity>
             </View>
+          </View>
+        </View>
+      </Modal>
+
+      {/* MODAL: Login requerido */}
+      <Modal
+        visible={showLoginModal}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setShowLoginModal(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContainer}>
+            <Text style={styles.modalTitle}>Acceso restringido</Text>
+            <Text style={styles.modalMessage}>
+              Necesitás iniciar sesión para acceder a esta sección.
+            </Text>
+            <TouchableOpacity
+              style={styles.modalActionButton}
+              onPress={() => {
+                setShowLoginModal(false);
+                router.push('/auth/login');
+              }}
+            >
+              <Text style={styles.modalActionText}>Iniciar sesión</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setShowLoginModal(false)}>
+              <Text style={styles.cancelText}>Cancelar</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -119,6 +173,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: Colores.textPrimary,
   },
+
   modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.4)',
@@ -136,6 +191,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     color: Colores.textPrimary,
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  modalMessage: {
+    fontSize: 15,
+    color: Colores.textSecondary,
     marginBottom: 20,
     textAlign: 'center',
   },
@@ -163,4 +224,17 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '500',
   },
+  modalActionButton: {
+    backgroundColor: '#3a86ff',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 8,
+    marginBottom: 12,
+  },
+  modalActionText: {
+    color: '#fff',
+    fontWeight: '600',
+    fontSize: 16,
+  },
 });
+

@@ -1,61 +1,102 @@
-// components/ui/BloquePerfilUsuario/UserProfileBlock.tsx
+import { useAuth } from '@/app/auth/AuthContext';
 import Colores from '@/constants/Colores';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 const UserProfileBlock = () => {
+  const { isLoggedIn } = useAuth();
+
+  const avatarSource = isLoggedIn
+    ? null // usamos G generada por View
+    : { uri: 'https://cdn-icons-png.flaticon.com/512/149/149071.png' }; // ícono genérico sin perfil
+
   return (
     <View style={styles.profileContainer}>
-      {/* FOTO DE PERFIL CENTRADA */}
+      {/* Avatar y botón Perfil */}
       <View style={styles.avatarSection}>
         <TouchableOpacity
           style={styles.avatarWrapper}
-          onPress={() => router.push('/settings/perfil')}
+          onPress={() =>
+            isLoggedIn ? router.push('/settings/perfil') : null
+          }
+          activeOpacity={isLoggedIn ? 0.7 : 1}
         >
-          <Image
-            source={{ uri: 'https://placekitten.com/200/200' }}
-            style={styles.avatar}
-          />
+          {isLoggedIn ? (
+            <View style={styles.loggedAvatar}>
+              <Text style={styles.avatarLetter}>G</Text>
+            </View>
+          ) : (
+            <Image source={avatarSource} style={styles.avatar} />
+          )}
         </TouchableOpacity>
 
-        {/* BOTÓN PERFIL A LA DERECHA */}
-        <TouchableOpacity
-          style={styles.perfilButton}
-          onPress={() => router.push('/profile')}
-          activeOpacity={0.8}
-        >
-          <Text style={styles.perfilButtonText}>Perfil</Text>
-          <Ionicons name="chevron-forward" size={18} color={Colores.textPrimary} />
-        </TouchableOpacity>
+        {/* Solo mostrar el botón "Perfil" si está logueado */}
+        {isLoggedIn && (
+          <TouchableOpacity
+            style={styles.perfilButton}
+            onPress={() => router.push('/profile')}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.perfilButtonText}>Perfil</Text>
+            <Ionicons
+              name="chevron-forward"
+              size={18}
+              color={Colores.textPrimary}
+            />
+          </TouchableOpacity>
+        )}
       </View>
 
-      {/* NOMBRE */}
       <Text style={styles.username}>Nombre de Usuario</Text>
 
-      {/* CONTADORES DE SEGUIDORES */}
-      <View style={styles.statsRow}>
-        {[
-          { label: 'Siguiendo', count: 123, route: '/seguidores/siguiendo' },
-          { label: 'Seguidores', count: 456, route: '/seguidores' },
-          { label: 'Me gustas', count: 789, route: '/likes' },
-        ].map(({ label, count, route }) => (
+      {/* Mostrar contadores si está logueado, o botones si no */}
+      {isLoggedIn ? (
+        <View style={styles.statsRow}>
+          {[
+            { label: 'Siguiendo', count: 123, route: '/seguidores/siguiendo' },
+            { label: 'Seguidores', count: 456, route: '/seguidores' },
+            { label: 'Me gustas', count: 789, route: '/likes' },
+          ].map(({ label, count, route }) => (
+            <TouchableOpacity
+              key={label}
+              style={styles.statButton}
+              onPress={() => router.push(route)}
+            >
+              <Text style={styles.statNumber}>{count}</Text>
+              <Text style={styles.statLabel}>{label}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      ) : (
+        <View style={styles.statsRow}>
           <TouchableOpacity
-            key={label}
-            style={styles.statButton}
-            onPress={() => router.push(route)}
+            style={styles.authButton}
+            onPress={() => router.push('/auth/register')}
           >
-            <Text style={styles.statNumber}>{count}</Text>
-            <Text style={styles.statLabel}>{label}</Text>
+            <Text style={styles.authButtonText}>Registrarse</Text>
           </TouchableOpacity>
-        ))}
-      </View>
+          <TouchableOpacity
+            style={styles.authButton}
+            onPress={() => router.push('/auth/login')}
+          >
+            <Text style={styles.authButtonText}>Iniciar sesión</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };
 
 export default UserProfileBlock;
+
 
 
 const styles = StyleSheet.create({
@@ -128,6 +169,38 @@ const styles = StyleSheet.create({
   statLabel: {
     fontSize: 13,
     color: Colores.textPrimary,
+  },
+  authButtonsRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 12,
+    marginTop: 8,
+  },
+  authButton: {
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 20,
+    backgroundColor: Colores.backgroundAccent,
+    borderWidth: 1,
+    borderColor: '#3a86ff',
+  },
+  authButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#3a86ff',
+  },
+  loggedAvatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: '#3a86ff', 
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  avatarLetter: {
+    fontSize: 40,
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
 
