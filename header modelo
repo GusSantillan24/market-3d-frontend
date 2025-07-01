@@ -1,0 +1,93 @@
+import { Feather } from '@expo/vector-icons';
+import { Stack, useRouter } from 'expo-router';
+import { useState } from 'react';
+import {
+    StyleSheet,
+    TextInput,
+    TouchableOpacity,
+    View,
+} from 'react-native';
+
+export default function ModelosLayout() {
+  const router = useRouter();
+  const [searchText, setSearchText] = useState('');
+
+  return (
+    <Stack
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#1E1E1E',
+        },
+        headerTintColor: '#fff',
+        headerTitleAlign: 'center',
+      }}
+    >
+      <Stack.Screen
+        name="index"
+        options={{
+          // Botón atrás explícito
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => router.back()}
+              style={{ paddingHorizontal: 16 }}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            >
+              <Feather name="arrow-left" size={22} color="#fff" />
+            </TouchableOpacity>
+          ),
+
+          headerTitle: () => (
+            <View style={styles.searchContainer}>
+              <Feather
+                name="search"
+                size={16}
+                color="#999"
+                style={{ marginRight: 8 }}
+              />
+              <TextInput
+                placeholder="Buscar modelos..."
+                placeholderTextColor="#aaa"
+                style={styles.searchInput}
+                value={searchText}
+                onChangeText={setSearchText}
+                returnKeyType="search"
+                clearButtonMode="while-editing"
+              />
+            </View>
+          ),
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => console.log('Abrir filtros')}
+              style={styles.iconButton}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            >
+              <Feather name="filter" size={22} color="#fff" />
+            </TouchableOpacity>
+          ),
+          headerBackTitleVisible: false,
+        }}
+      />
+    </Stack>
+  );
+}
+
+const styles = StyleSheet.create({
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#2a2a2a',
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    width: 250, // tamaño fijo para que no tape el back button
+  },
+  searchInput: {
+    color: '#fff',
+    fontSize: 14,
+    flex: 1,
+    padding: 0,
+  },
+  iconButton: {
+    paddingHorizontal: 12,
+  },
+});

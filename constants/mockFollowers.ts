@@ -1,0 +1,123 @@
+// constants/mockFollowers.ts
+export const mockFollowers = [
+  {
+    id: '1',
+    username: 'sofia_dev',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=1' },
+    isFollowing: false,
+  },
+  {
+    id: '2',
+    username: 'lucas.codes',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=2' },
+    isFollowing: true,
+  },
+  {
+    id: '3',
+    username: 'nata.ux',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=3' },
+    isFollowing: false,
+  },
+  {
+    id: '4',
+    username: 'fer.backend',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=4' },
+    isFollowing: true,
+  },
+  {
+    id: '5',
+    username: 'alejo.ai',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=5' },
+    isFollowing: false,
+  },
+  {
+    id: '6',
+    username: 'carla.code',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=6' },
+    isFollowing: true,
+  },
+  {
+    id: '7',
+    username: 'matias.web',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=7' },
+    isFollowing: true,
+  },
+  {
+    id: '8',
+    username: 'luciana_dsgn',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=8' },
+    isFollowing: false,
+  },
+  {
+    id: '9',
+    username: 'roberto.react',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=9' },
+    isFollowing: true,
+  },
+  {
+    id: '10',
+    username: 'martu.code',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=10' },
+    isFollowing: false,
+  },
+  {
+    id: '11',
+    username: 'ignacio.ml',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=11' },
+    isFollowing: true,
+  },
+  {
+    id: '12',
+    username: 'agus_uiux',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=12' },
+    isFollowing: false,
+  },
+  {
+    id: '13',
+    username: 'fede_front',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=13' },
+    isFollowing: true,
+  },
+  {
+    id: '14',
+    username: 'juana.dev',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=14' },
+    isFollowing: false,
+  },
+  {
+    id: '15',
+    username: 'nicolas.js',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=15' },
+    isFollowing: true,
+  },
+  {
+    id: '16',
+    username: 'vale.python',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=16' },
+    isFollowing: false,
+  },
+  {
+    id: '17',
+    username: 'daniela.api',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=17' },
+    isFollowing: true,
+  },
+  {
+    id: '18',
+    username: 'hernan_full',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=18' },
+    isFollowing: false,
+  },
+  {
+    id: '19',
+    username: 'camila.ui',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=19' },
+    isFollowing: true,
+  },
+  {
+    id: '20',
+    username: 'gabriel.cloud',
+    avatar: { uri: 'https://i.pravatar.cc/150?img=20' },
+    isFollowing: false,
+  },
+];

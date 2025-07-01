@@ -1,79 +1,112 @@
-import { useProtectedNavigation } from '@/hooks/useProtectedNavigation';
 import { router } from 'expo-router';
-import React from "react";
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useAuth } from "../auth/AuthContext";
+import React from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
+import UserProfileBlock from '@/components/ui/BloquePerfilUsuario';
+import UserFeatureBlock from '@/components/ui/BloquePerfilUsuario/UserFeaturesBlock';
+import HeaderButtons from '@/components/ui/BottomHeader';
+import Colores from '@/constants/Colores';
 
 const CuentaScreen = () => {
+  const handleNavigate = (path: string) => {
+    router.push(path);
+  };
 
-    const { isLoggedIn, logout } = useAuth();
-    const { navigateOrAlert } = useProtectedNavigation();
+  const renderSection = (items: { label: string; path: string }[]) => (
+    <View style={styles.block}>
+      {items.map(({ label, path }) => (
+        <TouchableOpacity
+          key={label}
+          style={styles.option}
+          onPress={() => handleNavigate(path)}
+          activeOpacity={0.7}
+        >
+          <Text style={styles.optionText}>{label}</Text>
+        </TouchableOpacity>
+      ))}
+    </View>
+  );
 
-    const handleOptionPress = (option: string) => {
-        Alert.alert('seleccionaste', option);
-    };
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      {/* Bloque fijo: Header */}
+      <HeaderButtons onNavigate={handleNavigate} />
 
-    return (
-        <View style={styles.container}> 
-            <Text style={styles.title}>Mi cuenta</Text>
+      {/* Bloque scrollable */}
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
+        <UserProfileBlock />
+        <UserFeatureBlock />
 
-            <TouchableOpacity style={styles.option} onPress={() => handleOptionPress('Settings')}>
-                <Text style={styles.optionText}>Settings</Text>
-            </TouchableOpacity>
+        {/* BLOQUES DE OPCIONES */}
+        {renderSection([
+          { label: 'Almacenamiento', path: '/almacenamiento' },
+        ])}
 
-             <TouchableOpacity style={ styles.option } onPress={() => navigateOrAlert('/app/profile/my_profile.tsx')}>
-                <Text style={styles.optionText}>Mi perfil</Text>
-            </TouchableOpacity>
+        {renderSection([
+          { label: 'Orden de modelos', path: '/modelos/orden' },
+          { label: 'Establecer descuentos', path: '/modelos/descuentos' },
+        ])}
 
-            <TouchableOpacity style={styles.option} onPress={() => navigateOrAlert('')}>
-                <Text style={styles.optionText}>Mi carrito</Text>
-            </TouchableOpacity>
+        {renderSection([
+          { label: 'Mis favoritos', path: '/favoritos' },
+          { label: 'Mi contenido', path: '/contenido' },
+          { label: 'Mis grupos', path: '/grupos' },
+        ])}
 
-            <TouchableOpacity style={styles.option} onPress={() => navigateOrAlert('')}>
-                <Text style={styles.optionText}>Almacenamiento</Text>
-            </TouchableOpacity>
-
-            { isLoggedIn ? (     
-                <>
-                    <TouchableOpacity style={styles.option} onPress={logout}>
-                        <Text style={[styles.optionText, { color: 'red'}]}>Cerrar sesion</Text>
-                    </TouchableOpacity>
-                </>
-            ) : (
-                <>
-                    <TouchableOpacity style={ styles.option } onPress={() => router.push('/auth/register')}>
-                        <Text style={styles.optionText}>Registrarse</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={ styles.option } onPress={() => router.push('/auth/login')}>
-                        <Text style={styles.optionText}>Iniciar sesion</Text>
-                    </TouchableOpacity>
-                </>
-            )}
-        </View>
-    );
+        {renderSection([
+          { label: 'Ayuda', path: '/ayuda' },
+          { label: 'Acerca de', path: '/acerca' },
+        ])}
+      </ScrollView>
+    </SafeAreaView>
+  );
 };
 
 export default CuentaScreen;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 20,
-        backgroundColor: '#fff',
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 30,
-    },
-    option: {
-        paddingVertical: 15,
-        borderBottomWidth: 1,
-        borderColor: '#ddd',
-    },
-    optionText: {
-        fontSize: 18,
-    },
-})
+  safeArea: {
+    flex: 1,
+    backgroundColor: Colores.background,
+  },
+  scrollContainer: {
+    paddingHorizontal: 16,
+    paddingBottom: 20,
+  },
+  block: {
+    marginVertical: 12,
+    backgroundColor: Colores.backgroundSecondary,
+    borderRadius: 12,
+    paddingVertical: 1,
+    paddingHorizontal: 16,
+    // Sombra para iOS
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+    // Sombra para Android
+    elevation: 5,
+  },
+  option: {
+    paddingVertical: 16,
+    // sin borde inferior para no separar con línea
+  },
+  optionText: {
+    fontSize: 16,
+    color: Colores.textPrimary,
+  },
+});
+
+
+
