@@ -31,33 +31,45 @@ Fue desarrollado como proyecto académico utilizando **React Native y Expo Go**,
 - **Configuración:** pantallas de ajustes de usuario.
 - **Componentes reutilizables:** estructura modular para facilitar el mantenimiento.
 
+
 ## 🖼️ Capturas de pantalla
 
-> Agregá tus capturas en `assets/screenshots/` con los nombres indicados abajo. Si todavía no las tenés, podés dejar esta sección comentada hasta subirlas.
-
 <div align="center">
+
 <table>
-<tr>
-<td align="center"><strong>Inicio / Feed</strong></td>
-<td align="center"><strong>Detalle de publicación</strong></td>
-<td align="center"><strong>Perfil</strong></td>
-</tr>
-<tr>
-<td><img src="assets/screenshots/inicio.png" alt="Pantalla de inicio con publicaciones" width="230" /></td>
-<td><img src="assets/screenshots/publicacion.png" alt="Detalle de una publicación" width="230" /></td>
-<td><img src="assets/screenshots/perfil.png" alt="Perfil de usuario" width="230" /></td>
-</tr>
-<tr>
-<td align="center"><strong>Subir diseño</strong></td>
-<td align="center"><strong>Seguidores</strong></td>
-<td align="center"><strong>Configuración</strong></td>
-</tr>
-<tr>
-<td><img src="assets/screenshots/subir-diseno.png" alt="Interfaz para subir diseños" width="230" /></td>
-<td><img src="assets/screenshots/seguidores.png" alt="Pantalla de seguidores y seguidos" width="230" /></td>
-<td><img src="assets/screenshots/configuracion.png" alt="Pantalla de configuración" width="230" /></td>
-</tr>
+  <tr>
+    <td align="center"><strong>Feed</strong></td>
+    <td align="center"><strong>Publicaciones</strong></td>
+    <td align="center"><strong>Búsqueda</strong></td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="assets/screenshots/feed.jpeg" alt="Feed principal" width="230" />
+    </td>
+    <td align="center">
+      <img src="assets/screenshots/publicaciones.jpeg" alt="Publicaciones" width="230" />
+    </td>
+    <td align="center">
+      <img src="assets/screenshots/busqueda.jpeg" alt="Búsqueda de diseños" width="230" />
+    </td>
+  </tr>
 </table>
+
+<table>
+  <tr>
+    <td align="center"><strong>Cuenta</strong></td>
+    <td align="center"><strong>Configuración</strong></td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="assets/screenshots/cuenta.jpeg" alt="Perfil de usuario" width="230" />
+    </td>
+    <td align="center">
+      <img src="assets/screenshots/configuracion.jpeg" alt="Configuración" width="230" />
+    </td>
+  </tr>
+</table>
+
 </div>
 
 ## 🛠️ Tecnologías
